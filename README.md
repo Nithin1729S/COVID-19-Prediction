@@ -8,7 +8,7 @@ This repository contains implementation of the above research paper, which uses 
 
 - Loaded the original `master_dataset.csv` file
 - Fixed column alignment issues in the original dataset
-- The original dataset has 57 columns.
+- The original dataset has 59 columns.
 - Select 27 relevant columns for analysis
 
 ### 2. Feature Selection
@@ -278,5 +278,5 @@ SHAP visualizations reveal which features contribute most to each model's predic
 
 ![image](https://github.com/user-attachments/assets/9ae67147-185b-45fb-9fb1-f492f25224e8)
 
-## Novely
+## Novelty 
 
