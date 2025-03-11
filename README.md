@@ -1,10 +1,6 @@
-# COVID-19 Dataset Preprocessing
+# High Accuracy COVID-19 Prediction Using Optimized Union Ensemble Feature Selection Approach
 
-This repository contains preprocessing steps performed on a COVID-19 master dataset to prepare it for machine learning analysis.
-
-## Overview
-
-This project focuses on preparing a COVID-19 dataset for predictive modeling, with particular emphasis on predicting COVID-19 positive cases based on various demographic, health, and behavioral factors.
+This repository contains implementation of the above research paper, which uses a union ensemble feature selection method followed by Hyperparameter optimization using a genetic algorithm to predict COVID-19.
 
 ## Data Preprocessing Steps
 
