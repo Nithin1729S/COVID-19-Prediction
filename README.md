@@ -278,5 +278,103 @@ SHAP visualizations reveal which features contribute most to each model's predic
 
 ![image](https://github.com/user-attachments/assets/9ae67147-185b-45fb-9fb1-f492f25224e8)
 
-## Novelty 
+# Novelty 
+## COVID-19 Prediction using Autoencoder + ANN
 
+Predict COVID-19 status using a cleaned, balanced dataset, with dimensionality reduction through a deep **autoencoder**, and classification using a carefully designed **artificial neural network (ANN)**. The model trains **6x faster** (2 hours vs 12 hours).
+
+##  Methodology
+
+### 1. Outlier Removal
+
+Outliers are values that are too far from the normal range and can confuse the model.
+
+We used the **Interquartile Range (IQR)** method:
+
+- For each feature:
+  - Calculate Q1 (25th percentile) and Q3 (75th percentile)
+  - IQR = Q3 - Q1
+  - Remove values that fall outside the range:  
+    `Q1 - 1.5*IQR` to `Q3 + 1.5*IQR`
+
+This helps in:
+- Removing noisy data
+- Making the training faster and more stable
+
+### 2.  Feature Scaling
+
+We used **Min-Max Normalization** to scale all values between 0 and 1.
+
+### 3. Data Balancing with SMOTEENN
+
+To fix imbalance, we used **SMOTEENN**:
+
+- **SMOTE**: Adds synthetic samples for the minority class
+- **ENN (Edited Nearest Neighbors)**: Removes overlapping or noisy data points
+
+## Deep Autoencoder for Feature Reduction
+
+### What is an Autoencoder?
+
+An **autoencoder** is a neural network that:
+- **Compresses** input data into a smaller format (**encoder**)
+- Then tries to **reconstruct** it back to the original (**decoder**)
+
+This helps in:
+- **Reducing the number of input features**
+- Removing noise and focusing on meaningful patterns
+
+###  Autoencoder Architecture
+
+```
+Input Layer  → Dense(128) → LeakyReLU → BatchNorm  
+             → Dense(64)  → LeakyReLU → BatchNorm  
+             → Dense(15)  → LeakyReLU (This is the compressed vector)
+
+             → Dense(64)  → LeakyReLU → BatchNorm  
+             → Dense(128) → LeakyReLU → BatchNorm  
+             → Output Layer (same size as input)
+```
+
+**Output of the encoder (15 values)** is what we used to train our ANN — it’s like compressing all original features into just 15 numbers that still carry all important information.
+
+
+
+## ANN for Final Classification
+
+After compressing the data with the autoencoder, we fed it into a **ANN** to predict whether someone is COVID-positive.
+
+###  ANN Architecture
+
+```
+Input (15)  
+→ Dense(128) → LeakyReLU → BatchNorm → Dropout(0.3)  
+→ Dense(64)  → LeakyReLU → BatchNorm → Dropout(0.2)  
+→ Dense(32)  → LeakyReLU → BatchNorm → Dropout(0.1)  
+→ Output (1 node, Sigmoid activation for binary classification)
+```
+
+- **LeakyReLU**: Better than standard ReLU for learning
+- **BatchNorm**: Keeps learning stable
+- **Dropout**: Helps prevent overfitting
+- **Sigmoid Output**: Gives probability of COVID-positive
+
+
+##  Final Model Performance
+
+| Metric       | Value       |
+|--------------|-------------|
+| Accuracy     | 96.77%      |
+| Precision    | 94.03%      |
+| Recall       | 99.96%      |
+| F1 Score     | 96.90%      |
+| AUC (ROC)    | ~0.99       |
+
+**Confusion Matrix:**
+```
+[[19269  1335]
+ [    8 21033]]
+```
+
+**ROC Curve**
+![image](https://github.com/user-attachments/assets/dec94d01-9b54-4d61-8adc-d5f9577f6728)
