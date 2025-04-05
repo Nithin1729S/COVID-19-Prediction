@@ -377,4 +377,10 @@ Input (15)
 ```
 
 **ROC Curve**
+
 ![image](https://github.com/user-attachments/assets/dec94d01-9b54-4d61-8adc-d5f9577f6728)
+
+---
+
+# COVID-19 Prediction using One Class SVM
+
