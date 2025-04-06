@@ -380,7 +380,68 @@ Input (15)
 
 ![image](https://github.com/user-attachments/assets/dec94d01-9b54-4d61-8adc-d5f9577f6728)
 
----
 
-# COVID-19 Prediction using One Class SVM
+# COVID-19 Prediction using TabNet
+
+## Methodology
+
+### 1. Boolean Conversion
+
+All boolean columns in the dataset are converted into integer format to make them compatible with the model, as machine learning models require numerical inputs.
+
+### 2. Outlier Removal
+
+Outliers in numerical features are removed using the Interquartile Range (IQR) method. This helps reduce noise and improve the performance and generalization of the model.
+
+### 3. Normalization
+
+All input features (except the target column) are standardized using Z-score normalization. This ensures that each feature contributes equally during model training by scaling them to a standard range.
+
+### 4. Handling Class Imbalance
+
+The dataset is likely imbalanced (i.e., more negative samples than positive ones). SMOTE (Synthetic Minority Over-sampling Technique) is used to generate synthetic samples of the minority class. This balances the dataset and helps prevent the model from being biased toward the majority class.
+
+### 5. Train-Test Split
+
+The balanced and normalized data is split into training and testing sets using stratified sampling to ensure that the class distribution is maintained in both subsets.
+
+### 6. Model Selection: TabNet
+
+TabNetClassifier is used for training. TabNet is a deep learning architecture designed specifically for tabular datasets. It uses sequential attention to select relevant features for each decision step, improving interpretability and efficiency.
+
+The model is trained with early stopping to prevent overfitting. Training stops if the validation performance doesn’t improve for a set number of epochs.
+
+### 7. Evaluation
+
+The model is evaluated on the test set using the following metrics:
+- **Accuracy**: Measures the overall correctness of the model.
+- **Precision**: Measures how many predicted positives were actually positive.
+- **Recall**: Measures how many actual positives were correctly predicted.
+- **F1 Score**: Harmonic mean of precision and recall.
+- **AUC (Area Under ROC Curve)**: Evaluates the model’s ability to distinguish between classes.
+
+### 8. Visualization
+
+Two key plots are used:
+- **ROC Curve**: Shows the trade-off between the true positive rate and false positive rate.
+- **Confusion Matrix**: Visual representation of the model’s classification performance, showing true positives, true negatives, false positives, and false negatives.
+
+## Results
+
+The model achieves strong performance:
+- Accuracy: ~97.17%
+- Precision: ~95.56%
+- Recall: ~98.93%
+- F1 Score: ~97.22%
+- AUC: ~0.993
+
+### ROC Curve
+
+![image](https://github.com/user-attachments/assets/9213f73b-ed5f-48dd-8f9c-19ae13b73337)
+
+### Confusion Matrix
+
+![image](https://github.com/user-attachments/assets/bc0beb6d-da9b-4e0c-9031-dbefe70f70ca)
+
+
 
