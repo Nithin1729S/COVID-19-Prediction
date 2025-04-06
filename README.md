@@ -479,6 +479,8 @@ The model achieves strong performance:
 - F1 Score: ~99.73%
 - AUC: 1.00
 
+![image](https://github.com/user-attachments/assets/f4266a25-199b-4ba2-8ea3-4a1bdce81bb0)
+
 
 ---
 
