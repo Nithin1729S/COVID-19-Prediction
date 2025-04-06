@@ -413,20 +413,6 @@ The model is trained with early stopping to prevent overfitting. Training stops 
 
 ### 7. Evaluation
 
-The model is evaluated on the test set using the following metrics:
-- **Accuracy**: Measures the overall correctness of the model.
-- **Precision**: Measures how many predicted positives were actually positive.
-- **Recall**: Measures how many actual positives were correctly predicted.
-- **F1 Score**: Harmonic mean of precision and recall.
-- **AUC (Area Under ROC Curve)**: Evaluates the model’s ability to distinguish between classes.
-
-### 8. Visualization
-
-Two key plots are used:
-- **ROC Curve**: Shows the trade-off between the true positive rate and false positive rate.
-- **Confusion Matrix**: Visual representation of the model’s classification performance, showing true positives, true negatives, false positives, and false negatives.
-
-## Results
 
 The model achieves strong performance:
 - Accuracy: ~97.17%
@@ -443,5 +429,56 @@ The model achieves strong performance:
 
 ![image](https://github.com/user-attachments/assets/bc0beb6d-da9b-4e0c-9031-dbefe70f70ca)
 
+---
 
+# COVID-19 Prediction using Stacking Ensemble
+
+Predict COVID-19 positive cases by combining multiple machine learning models using a stacking ensemble approach. It includes steps for preprocessing, resampling, training multiple base models, and aggregating their predictions using a meta-classifier.
+
+
+## Methodology
+
+### 1. Boolean Conversion
+
+Boolean columns in the dataset are converted to integers to ensure compatibility with the machine learning models, which require numerical input.
+
+### 2. Feature Normalization
+
+All features, except the target column, are scaled using Min-Max normalization. This transforms the values to a [0, 1] range, ensuring uniformity across all features and improving convergence for gradient-based models.
+
+### 3. Handling Class Imbalance
+
+The dataset may be imbalanced (e.g., more negatives than positives). To fix this, a combination technique called SMOTEENN is used. It balances the dataset by both oversampling the minority class (using SMOTE) and cleaning the noisy samples (using ENN - Edited Nearest Neighbors).
+
+### 4. Train-Test Split
+
+The balanced dataset is split into training and testing sets using stratified sampling. This ensures that the proportion of positive and negative cases remains consistent across both sets.
+
+### 5. Base Models
+
+Three strong classifiers are selected as base learners:
+- XGBoost (eXtreme Gradient Boosting)
+- LightGBM (Light Gradient Boosting Machine)
+- Support Vector Classifier (SVC)
+
+These models are trained in parallel during the stacking process.
+
+### 6. Stacking Ensemble
+
+The outputs (predictions) of the base models are combined using a meta-classifier, which in this case is Logistic Regression. The stacking classifier also has access to the original input features, which allows the meta-model to make more informed decisions.
+
+5-fold cross-validation is used during training to improve generalization and reduce overfitting.
+
+### 7. Evaluation
+
+
+The model achieves strong performance:
+- Accuracy: ~99.73%
+- Precision: ~99.71%
+- Recall: ~99.76%
+- F1 Score: ~99.73%
+- AUC: 1.00
+
+
+---
 
