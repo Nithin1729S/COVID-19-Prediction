@@ -484,3 +484,11 @@ The model achieves strong performance:
 
 ---
 
+## Comparing Time Taken by Each Approach
+
+| Approach              | Time Taken |
+|-----------------------|------------|
+| OUEFS + GA-HPO        | > 15 hrs   |
+| Autoencoder + ANN     | 3 hrs      |
+| TabNet                | 29 mins    |
+| Stacking Ensemble     | 9 hrs      |
