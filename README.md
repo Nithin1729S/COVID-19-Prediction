@@ -359,6 +359,9 @@ Input (15)
 → Output (1 node, Sigmoid activation for binary classification)
 ```
 
+![128 (1)](https://github.com/user-attachments/assets/e58ba7bc-08c6-46c8-9358-0b124d1d9e04)
+
+
 - **LeakyReLU**: Better than standard ReLU for learning
 - **BatchNorm**: Keeps learning stable
 - **Dropout**: Helps prevent overfitting
