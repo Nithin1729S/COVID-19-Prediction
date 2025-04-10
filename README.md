@@ -492,3 +492,29 @@ The model achieves strong performance:
 | Autoencoder + ANN     | 3 hrs      |
 | TabNet                | 29 mins    |
 | Stacking Ensemble     | 9 hrs      |
+
+---
+
+## Attempted Methods (But Failed)
+
+| Method               | Accuracy | Precision (Class 1) | Recall (Class 1) | F1 Score (Class 1) | Conclusion |
+|----------------------|----------|---------------------|------------------|---------------------|------------|
+| **Gaussian Mixture Model (GMM)** | 0.6001   | 0.7468              | 0.3110           | 0.4391              | Poor recall means it missed many actual positives. Not ideal for imbalanced data. |
+| **Local Outlier Factor**         | 0.9787   | 0.0390              | 0.0337           | 0.0362              | Extremely low precision & recall for positive class. Treats outliers poorly in high imbalance. |
+| **Elliptic Envelope**           | 0.9780   | 0.0076              | 0.0066           | 0.0071              | Almost useless for detecting positive cases. Strong bias toward majority class. |
+| **One-Class KMeans**            | 0.9445   | 0.0643              | 0.2703           | 0.1039              | Slightly better recall than others, but still far from usable. Weak at class separation. |
+| **Isolation Forest**            | 0.9217   | 0.0436              | 0.2666           | 0.0750              | Better than Envelope/LOF, but poor class-1 performance. Outlier detection not suitable here. |
+
+## Conclusion: Why These Methods Failed
+
+1. **All these models are unsupervised or semi-supervised** (especially Isolation Forest, LOF, Elliptic Envelope, etc.), and they rely on anomaly or distribution assumptions. But your dataset is:
+   - **Heavily imbalanced** (very few positives),
+   - **Well-structured with labeled data** (which supervised methods can use better).
+
+2. These models treat class-1 (positive COVID cases) as *outliers*, but real-world COVID prediction requires learning subtle patterns—*not just rarity*.
+
+3. Outlier-based approaches **don’t generalize well when positive cases form patterns similar to negatives** in some features, especially after preprocessing like normalization and SMOTE.
+
+4. Their **low recall** means they failed to catch actual positive cases, which is dangerous in a health prediction context.
+
+
