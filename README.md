@@ -515,7 +515,7 @@ The model achieves strong performance:
 
 ## Conclusion: Why These Methods Failed
 
-1. **All these models are unsupervised or semi-supervised** (especially Isolation Forest, LOF, Elliptic Envelope, etc.), and they rely on anomaly or distribution assumptions. But your dataset is:
+1. **All these models are unsupervised or semi-supervised** (especially Isolation Forest, LOF, Elliptic Envelope, etc.), and they rely on anomaly or distribution assumptions. But our dataset is:
    - **Heavily imbalanced** (very few positives),
    - **Well-structured with labeled data** (which supervised methods can use better).
 
