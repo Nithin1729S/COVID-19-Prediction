@@ -324,10 +324,12 @@ This helps in:
 - **Reducing the number of input features**
 - Removing noise and focusing on meaningful patterns
 
+
+
 ###  Autoencoder Architecture
 
 ```
-Input Layer  → Dense(128) → LeakyReLU → BatchNorm  
+Input Layer(27)  → Dense(128) → LeakyReLU → BatchNorm  
              → Dense(64)  → LeakyReLU → BatchNorm  
              → Dense(15)  → LeakyReLU (This is the compressed vector)
 
@@ -335,6 +337,9 @@ Input Layer  → Dense(128) → LeakyReLU → BatchNorm
              → Dense(128) → LeakyReLU → BatchNorm  
              → Output Layer (same size as input)
 ```
+
+![128](https://github.com/user-attachments/assets/27f410cd-f82a-4894-8639-63763f08718b)
+
 
 **Output of the encoder (15 values)** is what we used to train our ANN — it’s like compressing all original features into just 15 numbers that still carry all important information.
 
