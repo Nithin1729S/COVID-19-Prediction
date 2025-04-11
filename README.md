@@ -379,10 +379,9 @@ Input (15)
 | AUC (ROC)    | ~0.99       |
 
 **Confusion Matrix:**
-```
-[[19269  1335]
- [    8 21033]]
-```
+
+![image](https://github.com/user-attachments/assets/2b217be7-bc8f-47c8-8cd0-325a5b8001fd)
+
 
 **ROC Curve**
 
